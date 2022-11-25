@@ -6,9 +6,9 @@ def mainGame(shipType):
     # Create game screen(width,height)
     screen = pygame.display.set_mode((800, 600))
     # Background music
-    mixer.music.load("GATTACA, OST - Michael Nyman (1997).wav")
+    #mixer.music.load("GATTACA, OST - Michael Nyman (1997).wav")
     # This plays the music on loop
-    pygame.mixer.Channel(0).play(pygame.mixer.Sound("GATTACA, OST - Michael Nyman (1997).wav"))
+    #pygame.mixer.Channel(0).play(pygame.mixer.Sound("GATTACA, OST - Michael Nyman (1997).wav"))
     #mixer.music.play(-1)
     bg = pygame.image.load("Space_Background.png")
     # Title and icon
@@ -147,9 +147,12 @@ def mainGame(shipType):
         screen.blit(bg, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                return
             # Check if a keystroke is being pressed at all
-            if event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    return
                 # Checks to see if the keystroke is right or left
                 if event.key == pygame.K_LEFT:
                     if shipType == 1:
